@@ -4,12 +4,14 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { RecipeService } from '../../services/recipe.service';
 import { Recipe } from '../../services/recipe.model';
-import { IonHeader, IonToolbar, IonButtons } from "@ionic/angular/standalone";
+import { IonHeader, IonToolbar, IonButtons, IonTitle, IonButton, IonIcon, IonContent, IonList, IonItem, IonThumbnail, IonLabel, IonChip } from "@ionic/angular/standalone";
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-recipe-list',
   templateUrl: './recipe-list.page.html',
-  imports: [IonHeader, IonToolbar, IonButtons]
+  imports: [CommonModule,IonHeader,FormsModule, IonToolbar, IonButtons, IonTitle, IonButton, IonIcon, IonContent, IonList, IonItem, IonThumbnail, IonLabel, IonChip]
   
 })
 export class RecipeListPage implements OnInit, OnDestroy {

@@ -3,10 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { RecipeService } from '../../services/recipe.service';
-
+import { IonChip, IonLabel, IonList, IonItem, IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle, IonButton, IonIcon, IonContent } from "@ionic/angular/standalone";
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-recipe-detail',
-  templateUrl: './recipe-detail.page.html'
+  templateUrl: './recipe-detail.page.html',
+  imports: [CommonModule,IonChip,FormsModule, IonLabel, IonList, IonItem, IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle, IonButton, IonIcon, IonContent]
 })
 export class RecipeDetailPage implements OnInit {
   recipe: any = null;

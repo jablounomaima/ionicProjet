@@ -1,13 +1,88 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>add-recipe</ion-title>
+<!-- src/app/recipes/add-recipe/add-recipe.page.html -->
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/recipe-list"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Nouvelle Recette</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">add-recipe</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="stacked">Titre *</ion-label>
+    <ion-input [(ngModel)]="newRecipe.title" placeholder="Ex: Tiramisu"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Temps (min) *</ion-label>
+    <ion-input type="number" [(ngModel)]="newRecipe.prepTime"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Difficulté</ion-label>
+    <ion-select [(ngModel)]="newRecipe.difficulty">
+      <ion-select-option value="facile">Facile</ion-select-option>
+      <ion-select-option value="moyen">Moyen</ion-select-option>
+      <ion-select-option value="difficile">Difficile</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- Catégories -->
+  <ion-item>
+    <ion-label position="stacked">Catégories (appuyez sur Entrée)</ion-label>
+    <ion-input 
+      [(ngModel)]="categoryInput" 
+      (keyup.enter)="addCategory()"
+      placeholder="Ex: dessert">
+    </ion-input>
+  </ion-item>
+  <ion-chip *ngFor="let cat of newRecipe.categories; let i = index" (click)="removeItem(newRecipe.categories, i)" color="primary">
+    <ion-label>{{ cat }}</ion-label>
+    <ion-icon name="close-circle"></ion-icon>
+  </ion-chip>
+
+  <!-- Ingrédients -->
+  <ion-item>
+    <ion-label position="stacked">Ingrédients (appuyez sur Entrée)</ion-label>
+    <ion-input 
+      [(ngModel)]="ingredientInput" 
+      (keyup.enter)="addIngredient()"
+      placeholder="Ex: 2 œufs">
+    </ion-input>
+  </ion-item>
+  <ion-list>
+    <ion-item *ngFor="let ing of newRecipe.ingredients; let i = index">
+      <ion-label>{{ ing }}</ion-label>
+      <ion-button fill="clear" color="danger" (click)="removeItem(newRecipe.ingredients, i)">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <!-- Étapes -->
+  <ion-item>
+    <ion-label position="stacked">Étapes (appuyez sur Entrée)</ion-label>
+    <ion-input 
+      [(ngModel)]="stepInput" 
+      (keyup.enter)="addStep()"
+      placeholder="Ex: Mélanger les ingrédients">
+    </ion-input>
+  </ion-item>
+  <ion-list>
+    <ion-item *ngFor="let step of newRecipe.steps; let i = index">
+      <ion-label>{{ i + 1 }}. {{ step }}</ion-label>
+      <ion-button fill="clear" color="danger" (click)="removeItem(newRecipe.steps, i)">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <!-- Image -->
+  <ion-button expand="full" (click)="takePicture()">Ajouter une photo</ion-button>
+  <img [src]="newRecipe.image" *ngIf="newRecipe.image" style="width: 100%; max-height: 200px; object-fit: cover; margin: 10px 0; border-radius: 8px;">
+
+  <!-- Boutons -->
+  <ion-button expand="full" (click)="saveRecipe()">Enregistrer</ion-button>
+  <ion-button expand="full" fill="outline" (click)="cancel()">Annuler</ion-button>
 </ion-content>
