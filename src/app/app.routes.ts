@@ -7,7 +7,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'recipe-list',
     pathMatch: 'full',
   },
   {
@@ -15,8 +15,8 @@ export const routes: Routes = [
     loadComponent: () => import('./recipes/recipe-list/recipe-list.page').then( m => m.RecipeListPage)
   },
   {
-    path: 'recipe-detail',
-    loadComponent: () => import('./recipes/recipe-detail/recipe-detail.page').then( m => m.RecipeDetailPage)
+    path: 'recipe-detail/:id',
+    loadComponent: () => import('./recipes/recipe-detail/recipe-detail.page').then(m => m.RecipeDetailPage)
   },
   {
     path: 'add-recipe',
