@@ -9,7 +9,7 @@ export class RecipeService {
     {
       id: 1,
       title: 'Pâtes à la carbonara',
-      image: 'assets/icons/chef-hat.svg',
+      image: 'assets/icon/chef.png',
       prepTime: 20,
       difficulty: 'facile',
       categories: ['rapide', 'italien'],

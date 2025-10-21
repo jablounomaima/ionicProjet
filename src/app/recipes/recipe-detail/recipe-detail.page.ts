@@ -6,6 +6,8 @@ import { RecipeService } from '../../services/recipe.service';
 import { IonChip, IonLabel, IonList, IonItem, IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle, IonButton, IonIcon, IonContent } from "@ionic/angular/standalone";
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { trash} from 'ionicons/icons';
+import { addIcons } from 'ionicons';
 @Component({
   selector: 'app-recipe-detail',
   templateUrl: './recipe-detail.page.html',
@@ -19,7 +21,12 @@ export class RecipeDetailPage implements OnInit {
     private router: Router,
     private alertController: AlertController,
     private recipeService: RecipeService
-  ) {}
+  ) {
+
+    addIcons({  // ← Cet appel global peut causer des problèmes dans certains environnements stricts
+      'trash': trash
+    });
+  }
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id')!;
