@@ -1,0 +1,31 @@
+<!-- src/app/recipes/recipe-list/recipe-list.page.html -->
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Mes Recettes</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="goToAddRecipe()">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let recipe of recipes" (click)="goToDetail(recipe.id)">
+      <ion-thumbnail slot="start">
+        <img [src]="recipe.image" [alt]="recipe.title">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ recipe.title }}</h2>
+        <p>⏱ {{ recipe.prepTime }} min • {{ recipe.difficulty }}</p>
+        <p>
+          <ion-chip *ngFor="let cat of recipe.categories" color="primary">
+            <ion-label>{{ cat }}</ion-label>
+          </ion-chip>
+        </p>
+      </ion-label>
+      <ion-icon name="chevron-forward" slot="end"></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>
